@@ -13,6 +13,20 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <sureFireVersion>3.0.0-M1</sureFireVersion>
     </properties>
+    <build>
+    <plugins>
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.0</version>
+        <configuration>
+            <source>8</source>
+            <target>8</target>
+        </configuration>
+    </plugin>
+    </plugins>
+    </build>
+
     <profiles>
         <profile>
             <id> Selenium</id>
@@ -20,20 +34,29 @@
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-compiler-plugin</artifactId>
-                        <version>3.8.0</version>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.0.0-M3</version>
                         <configuration>
-                            <source>8</source>
-                            <target>8</target>
+                            <suiteXmlFiles>
+                                <suiteXmlFile>src/test/myFirstTest.xml</suiteXmlFile>
+                            </suiteXmlFiles>
                         </configuration>
                     </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>TestNG</id>
+            <build>
+                <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>3.0.0-M3</version>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>src/test/myFirstTest.xml</suiteXmlFile>
+                                <suiteXmlFile>src/test/testNgTest.xml</suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>
